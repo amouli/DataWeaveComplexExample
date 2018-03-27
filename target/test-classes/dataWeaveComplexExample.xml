@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:vm="http://www.mulesoft.org/schema/mule/vm" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
+http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd
+http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd">
+    <http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration"/>
+    <vm:connector name="VM" validateConnections="true" doc:name="VM"/>
+    <flow name="karthikdataweaveFlow1">
+        <dw:transform-message doc:name="Transform Message" metadata:id="9d30622e-749f-4180-8629-24b038105256">
+            <dw:input-variable doc:sample="oneList.json" mimeType="application/json" variableName="oneList"/>
+            <dw:input-variable doc:sample="secondList2.json" mimeType="application/json" variableName="secondList"/>
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/json
+
+---
+flowVars.oneList map using (titles = flowVars.secondList filter ((item) -> 
+	(item.empId == $.empId)
+)) {
+    ($),
+    title: titles[0].title when (sizeOf titles) > 0 otherwise "",
+    age: titles[0].age when (sizeOf titles) > 0 otherwise ""
+}]]></dw:set-payload>
+        </dw:transform-message>
+    </flow>
+    <flow name="karthikdataweaveFlow">
+        <dw:transform-message doc:name="Transform Message" metadata:id="ba40ab6a-7b8f-4ef0-8b98-da5dc14a82ee">
+            <dw:input-payload doc:sample="valuejson.json" mimeType="application/json"/>
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/json
+
+%function relacevalue(input)
+	
+	'NBA Offer' when (payload.eRASiebelKey  == null and payload.nBAType == "Product Offer" ) 
+					otherwise 
+						null when (payload.eRASiebelKey  != null and payload.nBAType == "Product Offer" )
+					otherwise
+						"NBA Action" when (payload.nBAType == "Service Action" )
+    				otherwise
+	    				""
+	
+
+
+---
+{
+	"details" :  relacevalue(payload)
+}]]></dw:set-payload>
+        </dw:transform-message>
+    </flow>
+    <flow name="karthikdataweaveFlow2">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="/gendvalue" allowedMethods="POST" doc:name="HTTP"/>
+        <dw:transform-message doc:name="Transform Message">
+            <dw:set-payload><![CDATA[%dw 1.0
+%input payload application/xml
+%output application/xml
+---
+payload
+		]]></dw:set-payload>
+        </dw:transform-message>
+        <dw:transform-message doc:name="Transform Message" metadata:id="3310589e-eae3-48f1-915f-99d8a8b7417b">
+            <dw:input-payload doc:sample="requestXml.xml" mimeType="application/xml"/>
+            <dw:set-payload><![CDATA[%dw 1.0
+%input payload application/xml
+%output application/json
+---
+
+	 payload.root.propositions.*proposition default [] map ((proposition , indexOfProposition) ->{
+		USBOfferType:proposition.@id
+	})
+
+
+]]></dw:set-payload>
+        </dw:transform-message>
+        <splitter expression="#[json:USBOfferType]" doc:name="Splitter"/>
+
+        <logger message="input--------------  #[payload]" level="INFO" doc:name="Logger"/>
+        <json:object-to-json-transformer doc:name="Object to JSON"/>
+        <logger message="output--------------  #[payload]" level="INFO" doc:name="Logger"/>
+        <component class="karthikdataweave.JenerateList" doc:name="Java"/>
+        <logger level="INFO" doc:name="Logger"/>
+
+        <collection-aggregator failOnTimeout="true" doc:name="Collection Aggregator"/>
+
+        <logger level="INFO" doc:name="Logger"/>
+    </flow>
+
+
+</mule>

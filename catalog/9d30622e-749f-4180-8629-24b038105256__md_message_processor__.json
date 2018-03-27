@@ -1,0 +1,17 @@
+{
+    "inputMessageMetadata": {
+        "flowVariables": {
+            "secondList": {
+                "connectorName": "#_custom_mule_metadata_type_#",
+                "typeId": "secondList"
+            },
+            "oneList": {
+                "connectorName": "#_custom_mule_metadata_type_#",
+                "typeId": "OneList"
+            }
+        }
+    },
+    "outputMessageMetadata": {},
+    "id": "9d30622e-749f-4180-8629-24b038105256",
+    "version": "5.2.0.0"
+}

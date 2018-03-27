@@ -1,0 +1,81 @@
+<root xmlns:i="http://www.w3.org/2001/XMLSchema-instance"> 
+	 <propositions>
+               <proposition id="33802007" offer-id="224727877" offerSpace-id="233134889" weight="99990000" rank="1" startDate="2017-09-01 07:00:00.000Z" endDate="2018-09-30 07:00:00.000Z" nBAType="Product Offer" offerExpirationDate="2018-09-30 07:00:00.000Z" offerSource="" eRASiebelKey="CAMPALIT30|COMMSB94412|2017060101" offerFlag="Campaign Product Offer" ProductCode="" extnSubProductCode="" internalSubProductCode="">
+                  <view>
+                     <shortContent/>
+                     <imageUrl/>
+                     <htmlSource/>
+                     <textSource>This is an ERA offer</textSource>
+                  </view>
+                  <category startDate="" endDate="" id="224726325"/>
+                  <createdBy name="admin"/>
+                  <modifiedBy name="Kausik"/>
+               </proposition>
+               <proposition id="33802008" offer-id="231463487" offerSpace-id="233134889" weight="30000" rank="2" startDate="2017-10-19 07:00:00.000Z" endDate="2018-10-26 07:00:00.000Z" nBAType="" offerExpirationDate="2018-10-27 07:00:00.000Z" offerSource="" eRASiebelKey="" offerFlag="" ProductCode="" extnSubProductCode="" internalSubProductCode="">
+                  <view>
+                     <shortContent>Test offer banker role</shortContent>
+                     <imageUrl/>
+                     <htmlSource>Test offer banker role</htmlSource>
+                     <textSource>FirstName=MARSHA|LastName=BRADY|EmailAddress=|PhoneNumber=|D1=Red Cross|D2=14.2%|D3=10/10/2005|D4=12/31/2018|D5=$20|D6=$500</textSource>
+                  </view>
+                  <category startDate="" endDate="" id="226084871"/>
+                  <createdBy name="Kausik"/>
+                  <modifiedBy name="Kausik"/>
+               </proposition>
+               <proposition id="33802009" offer-id="225125939" offerSpace-id="233134889" weight="9999" rank="3" startDate="2017-09-01 07:00:00.000Z" endDate="2018-09-30 07:00:00.000Z" nBAType="Product Offer" offerExpirationDate="2018-09-30 07:00:00.000Z" offerSource="" eRASiebelKey="CAMPALIT30|COMMSB94412|2017060101" offerFlag="Campaign Product Offer" ProductCode="" extnSubProductCode="" internalSubProductCode="">
+                  <view>
+                     <shortContent/>
+                     <imageUrl/>
+                     <htmlSource/>
+                     <textSource>This is an ERA offer</textSource>
+                  </view>
+                  <category startDate="" endDate="" id="225125932"/>
+                  <createdBy name="admin"/>
+                  <modifiedBy name="Kausik"/>
+               </proposition>
+               <proposition id="33802010" offer-id="229185169" offerSpace-id="233134889" weight="1003" rank="4" startDate="2017-10-10 07:00:00.000Z" endDate="2018-10-25 07:00:00.000Z" nBAType="Service Action" offerExpirationDate="2018-10-18 07:00:00.000Z" offerSource="" eRASiebelKey="NBANBA74|SA|NBA" offerFlag="Campaign Service Action" ProductCode="ATM" extnSubProductCode="01" internalSubProductCode="01">
+                  <view>
+                     <shortContent/>
+                     <imageUrl/>
+                     <htmlSource/>
+                     <textSource>S1=4156667777|S2=John|S3=Doe|S4=testing@usbank.com|D1=CA|D2=SF|D3=DDA|D4=CCD|D5=BPEnrolled|D6=AddressNotValid</textSource>
+                  </view>
+                  <category startDate="" endDate="" id="226084871"/>
+                  <createdBy name="Kausik"/>
+                  <modifiedBy name="Kausik"/>
+               </proposition>
+               <proposition id="33802011" offer-id="229185153" offerSpace-id="233134889" weight="1002" rank="5" startDate="2017-10-10 07:00:00.000Z" endDate="2018-10-25 07:00:00.000Z" nBAType="Service Action" offerExpirationDate="2018-10-18 07:00:00.000Z" offerSource="" eRASiebelKey="NBANBA74|SA|NBA" offerFlag="Campaign Service Action" ProductCode="ATM" extnSubProductCode="01" internalSubProductCode="01">
+                  <view>
+                     <shortContent/>
+                     <imageUrl/>
+                     <htmlSource/>
+                     <textSource>S1=4156667777|S2=John|S3=Doe|S4=testing@usbank.com|D1=CA|D2=SF|D3=DDA|D4=CCD|D5=BPEnrolled|D6=AddressNotValid</textSource>
+                  </view>
+                  <category startDate="" endDate="" id="226084871"/>
+                  <createdBy name="Kausik"/>
+                  <modifiedBy name="Kausik"/>
+               </proposition>
+               <proposition id="33802012" offer-id="229185182" offerSpace-id="233134889" weight="1001" rank="6" startDate="2017-10-10 07:00:00.000Z" endDate="2018-10-25 07:00:00.000Z" nBAType="Service Action" offerExpirationDate="2018-10-18 07:00:00.000Z" offerSource="" eRASiebelKey="NBANBA74|SA|NBA" offerFlag="Campaign Service Action" ProductCode="ATM" extnSubProductCode="01" internalSubProductCode="01">
+                  <view>
+                     <shortContent/>
+                     <imageUrl/>
+                     <htmlSource/>
+                     <textSource>S1=4156667777|S2=John|S3=Doe|S4=testing@usbank.com|D1=CA|D2=SF|D3=DDA|D4=CCD|D5=BPEnrolled|D6=AddressNotValid</textSource>
+                  </view>
+                  <category startDate="" endDate="" id="226084871"/>
+                  <createdBy name="Kausik"/>
+                  <modifiedBy name="Kausik"/>
+               </proposition>
+               <proposition id="33802013" offer-id="226084878" offerSpace-id="233134889" weight="1000" rank="7" startDate="2017-10-10 07:00:00.000Z" endDate="2018-10-25 07:00:00.000Z" nBAType="Service Action" offerExpirationDate="2018-10-18 07:00:00.000Z" offerSource="" eRASiebelKey="NBANBA74|SA|NBA" offerFlag="Campaign Service Action" ProductCode="ATM" extnSubProductCode="01" internalSubProductCode="01">
+                  <view>
+                     <shortContent/>
+                     <imageUrl/>
+                     <htmlSource/>
+                     <textSource>S1=4156667777|S2=John|S3=Doe|S4=testing@usbank.com|D1=CA|D2=SF|D3=DDA|D4=CCD|D5=BPEnrolled|D6=AddressNotValid</textSource>
+                  </view>
+                  <category startDate="" endDate="" id="226084871"/>
+                  <createdBy name="admin"/>
+                  <modifiedBy name="Kausik"/>
+               </proposition>
+         </propositions>
+</root>
