@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:vm="http://www.mulesoft.org/schema/mule/vm" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+<mule xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:vm="http://www.mulesoft.org/schema/mule/vm" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	xmlns:spring="http://www.springframework.org/schema/beans" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
@@ -9,10 +9,11 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
 http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd
-http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd">
+http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
     <http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration"/>
     <vm:connector name="VM" validateConnections="true" doc:name="VM"/>
-    <flow name="karthikdataweaveFlow1">
+    <flow name="flowSample1">
         <dw:transform-message doc:name="Transform Message" metadata:id="9d30622e-749f-4180-8629-24b038105256">
             <dw:input-variable doc:sample="oneList.json" mimeType="application/json" variableName="oneList"/>
             <dw:input-variable doc:sample="secondList2.json" mimeType="application/json" variableName="secondList"/>
@@ -29,7 +30,7 @@ flowVars.oneList map using (titles = flowVars.secondList filter ((item) ->
 }]]></dw:set-payload>
         </dw:transform-message>
     </flow>
-    <flow name="karthikdataweaveFlow">
+    <flow name="multipleArray">
         <dw:transform-message doc:name="Transform Message" metadata:id="ba40ab6a-7b8f-4ef0-8b98-da5dc14a82ee">
             <dw:input-payload doc:sample="valuejson.json" mimeType="application/json"/>
             <dw:set-payload><![CDATA[%dw 1.0
@@ -53,7 +54,7 @@ flowVars.oneList map using (titles = flowVars.secondList filter ((item) ->
 }]]></dw:set-payload>
         </dw:transform-message>
     </flow>
-    <flow name="karthikdataweaveFlow2">
+    <flow name="SplitterandFinalmessage">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/gendvalue" allowedMethods="POST" doc:name="HTTP"/>
         <dw:transform-message doc:name="Transform Message">
             <dw:set-payload><![CDATA[%dw 1.0
@@ -67,7 +68,7 @@ payload
             <dw:input-payload doc:sample="requestXml.xml" mimeType="application/xml"/>
             <dw:set-payload><![CDATA[%dw 1.0
 %input payload application/xml
-%output application/json
+%output application/java
 ---
 
 	 payload.root.propositions.*proposition default [] map ((proposition , indexOfProposition) ->{
@@ -77,17 +78,17 @@ payload
 
 ]]></dw:set-payload>
         </dw:transform-message>
-        <splitter expression="#[json:USBOfferType]" doc:name="Splitter"/>
-
+        <collection-splitter doc:name="Collection Splitter"/>
         <logger message="input--------------  #[payload]" level="INFO" doc:name="Logger"/>
         <json:object-to-json-transformer doc:name="Object to JSON"/>
         <logger message="output--------------  #[payload]" level="INFO" doc:name="Logger"/>
-        <component class="karthikdataweave.JenerateList" doc:name="Java"/>
+        <component class="dataweave.JenerateList" doc:name="Java"/>
         <logger level="INFO" doc:name="Logger"/>
 
         <collection-aggregator failOnTimeout="true" doc:name="Collection Aggregator"/>
 
         <logger level="INFO" doc:name="Logger"/>
+        <json:object-to-json-transformer doc:name="Object to JSON"/>
     </flow>
 
 
