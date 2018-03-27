@@ -82,7 +82,7 @@ payload
         <logger message="input--------------  #[payload]" level="INFO" doc:name="Logger"/>
         <json:object-to-json-transformer doc:name="Object to JSON"/>
         <logger message="output--------------  #[payload]" level="INFO" doc:name="Logger"/>
-        <component class="karthikdataweave.JenerateList" doc:name="Java"/>
+        <component class="dataweave.JenerateList" doc:name="Java"/>
         <logger level="INFO" doc:name="Logger"/>
 
         <collection-aggregator failOnTimeout="true" doc:name="Collection Aggregator"/>
